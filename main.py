@@ -1,5 +1,8 @@
 import pandas as pd
 import tensorflow as tf
+import os
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 
 def get_dataframe():
@@ -30,15 +33,31 @@ def get_dataframe():
     frame['last_new_job'] = frame.last_new_job.cat.codes
 
     pd.set_option('display.max_columns', None)
-    print(df.head())
+    print(frame.head())
 
     return frame
 
 
+def get_compiled_model():
+    mod = tf.keras.Sequential([
+        tf.keras.layers.Dense(10, activation='relu'),
+        tf.keras.layers.Dense(10, activation='relu'),
+        tf.keras.layers.Dense(1)
+    ])
+
+    mod.compile(optimizer='adam',
+                loss=tf.keras.losses.BinaryCrossentropy(from_logits=True),
+                metrics=['accuracy'])
+    return mod
+
+
 df = get_dataframe()
-# target = df.pop('target')
-# dataset = tf.data.Dataset.from_tensor_slices((df.values, target.values))
-#
-# for feat, targ in dataset.take(5):
-#     print('Features: {}, Target: {}'.format(feat, targ))
-#     tf.constant(df[''])
+target = df.pop('target')
+dataset = tf.data.Dataset.from_tensor_slices((df.values, target.values))
+
+for feat, targ in dataset.take(5):
+    print('Features: {}, Target: {}'.format(feat, targ))
+train_dataset = dataset.shuffle(len(df)).batch(1)
+
+model = get_compiled_model()
+model.fit(train_dataset, epochs=15)
