@@ -5,4 +5,4 @@ A project for Intro to Artificial Intelligence at UMKC in Spring 2021
 
 # references
 
-(TensorFlow video playlist)[https://www.youtube.com/playlist?list=PLhhyoLH6IjfxVOdVC1P1L5z5azs0XjMsb]
+[TensorFlow video playlist](https://www.youtube.com/playlist?list=PLhhyoLH6IjfxVOdVC1P1L5z5azs0XjMsb)
