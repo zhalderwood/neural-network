@@ -1,11 +1,13 @@
 import pandas as pd
 import tensorflow as tf
+import numpy as np
+import time
 import os
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 
-def get_dataframe():
+def get_df():
     # takes in .csv file and converts to discrete numerical values
     frame = pd.read_csv('aug_train.csv')
     columns = {
@@ -33,31 +35,66 @@ def get_dataframe():
     frame['last_new_job'] = frame.last_new_job.cat.codes
 
     pd.set_option('display.max_columns', None)
-    print(frame.head())
 
-    return frame
+    return frame.sample(frac=1)
+
+
+def get_df_one_hot():
+    # takes in .csv file and converts to discrete numerical values
+    frame = pd.read_csv('aug_train.csv')
+
+    # clean up file columns that don't need one-hot encoding
+    frame['experience'].replace({'>20': 20, '<1': 0, np.nan: '-1'}, inplace=True)
+    frame['last_new_job'].replace({'>4': '5', 'never': '0', np.nan: '-1'}, inplace=True)
+    frame['experience'] = frame['experience'].astype(int)
+    frame['last_new_job'] = frame['last_new_job'].astype(int)
+    frame['relevant_experience'] = pd.Categorical(frame['relevant_experience'])
+    frame['relevant_experience'] = frame.relevant_experience.cat.codes
+
+    # one-hot encode the rest
+    enc_frame = pd.get_dummies(frame)
+    pd.set_option('display.max_columns', None)
+    print(enc_frame.head())
+
+    # split dataset 85/15 and return
+    return enc_frame  # .iloc[:16150, :], enc_frame.iloc[16151:, :]
 
 
 def get_compiled_model():
     mod = tf.keras.Sequential([
-        tf.keras.layers.Dense(10, activation='relu'),
-        tf.keras.layers.Dense(10, activation='relu'),
+        # add a normalization layer?
+        tf.keras.layers.Dense(30, activation='relu'),
+        tf.keras.layers.Dense(30, activation='relu'),
         tf.keras.layers.Dense(1)
     ])
 
     mod.compile(optimizer='adam',
+                # loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
                 loss=tf.keras.losses.BinaryCrossentropy(from_logits=True),
                 metrics=['accuracy'])
     return mod
 
 
-df = get_dataframe()
-target = df.pop('target')
-dataset = tf.data.Dataset.from_tensor_slices((df.values, target.values))
+# split dataset 85/15
+df = get_df_one_hot()
+print(df.shape)
+print(df.dtypes)
 
-for feat, targ in dataset.take(5):
-    print('Features: {}, Target: {}'.format(feat, targ))
-train_dataset = dataset.shuffle(len(df)).batch(1)
+df_target = df.pop('target')
+
+df_all = tf.data.Dataset.from_tensor_slices((df.values, df_target.values))
+
+
+for feature, target in df_all.take(5):
+    print('Features: {}, Target: {}'.format(feature, target))
 
 model = get_compiled_model()
-model.fit(train_dataset, epochs=15)
+loops = 5
+df_working = df_all.iloc[:16150, :]
+df_test = df.iloc[16151:, :]
+while loops > 0:
+    df_all = df_all.batch(60)
+    model.fit(df_all, epochs=300)
+    model.summary()
+    loops -= 1
+model.evaluate()

@@ -2,9 +2,10 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.datasets import mnist
+from tensorflow.python.client import device_lib
 import os
 
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+# os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 # def test():
 #     # Initialization of tensors
@@ -77,4 +78,11 @@ def neural_test():
     model.evaluate(x_test, y_test, batch_size=32, verbose=2)
 
 
-neural_test()
+# neural_test()
+
+gpu = tf.test.gpu_device_name()
+
+print('TensorFlow running on GPU: {}'.format(gpu))
+print(tf.config.list_physical_devices('GPU'))
+device_lib.list_local_devices()
+print(tf.__version__)
