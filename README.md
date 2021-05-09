@@ -9,7 +9,7 @@ A project for Intro to Artificial Intelligence at UMKC in Spring 2021
 - [TensorFlow, pandas, and keras guides](https://www.tensorflow.org/tutorials)
 - [pandas type conversions](https://www.geeksforgeeks.org/change-data-type-for-one-or-more-columns-in-pandas-dataframe/)
 - [pandas API guide](https://pandas.pydata.org/docs/reference/frame.html)
-- [Dividing up datasets](https://stackoverflow.com/questions/48213766/split-a-dataset-created-by-tensorflow-dataset-api-in-to-train-and-test/51258695)
+- [Dividing up datasets](https://www.geeksforgeeks.org/split-pandas-dataframe-by-rows/)
 - [AI & keras explained](https://machinelearningmastery.com/tensorflow-tutorial-deep-learning-with-tf-keras/)
 - [Activation and initialization functions](https://towardsdatascience.com/weight-initialization-techniques-in-neural-networks-26c649eb3b78)
 
