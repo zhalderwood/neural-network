@@ -46,14 +46,15 @@ Once I was satisfied with the layers, I started playing around some with the bat
 
 I was surprised I was able to get such quick results, but I went with it and dropped down to 30 epochs. That consistently got me the best test scores, around 77%. In general that isn't a great score for a neural network with supervised training... but by my understanding, this data was too limited anyway. So with that, I decided to wrap up the project and submit what you see in my repo.
 
-Here's a snippet of the console output during from the final epoch:
+```# Here's a snippet of the console output during from the final epoch:
 
-`Epoch 30/30`
-`44/44 [==============================] - 0s 3ms/step - loss: 0.4439 - accuracy: 0.7874 - val_loss: 0.4847 - val_accuracy: 0.7548`
+Epoch 30/30
 
-And the output from running the test (evaluation) function:
+44/44 [==============================] - 0s 3ms/step - loss: 0.4439 - accuracy: 0.7874 - val_loss: 0.4847 - val_accuracy: 0.7548
 
-`180/180 [==============================] - 0s 1ms/step - loss: 0.4705 - accuracy: 0.7738`
+# And the output from running the test (evaluation) function:
+
+180/180 [==============================] - 0s 1ms/step - loss: 0.4705 - accuracy: 0.7738``
 
 
 Thanks for reading!
