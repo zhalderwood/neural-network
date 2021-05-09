@@ -54,7 +54,7 @@ Epoch 30/30
 
 # And the output from running the test (evaluation) function:
 
-180/180 [==============================] - 0s 1ms/step - loss: 0.4705 - accuracy: 0.7738``
+180/180 [==============================] - 0s 1ms/step - loss: 0.4705 - accuracy: 0.7738```
 
 
 Thanks for reading!
