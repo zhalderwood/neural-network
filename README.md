@@ -48,12 +48,12 @@ I was surprised I was able to get such quick results, but I went with it and dro
 
 Here's a snippet of the console output during from the final epoch:
 
-'Epoch 30/30'
-'44/44 [==============================] - 0s 3ms/step - loss: 0.4439 - accuracy: 0.7874 - val_loss: 0.4847 - val_accuracy: 0.7548'
+`Epoch 30/30`
+`44/44 [==============================] - 0s 3ms/step - loss: 0.4439 - accuracy: 0.7874 - val_loss: 0.4847 - val_accuracy: 0.7548`
 
 And the output from running the test (evaluation) function:
 
-'180/180 [==============================] - 0s 1ms/step - loss: 0.4705 - accuracy: 0.7738'
+`180/180 [==============================] - 0s 1ms/step - loss: 0.4705 - accuracy: 0.7738`
 
 
 Thanks for reading!
