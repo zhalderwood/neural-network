@@ -47,7 +47,7 @@ Once I was satisfied with the layers, I started playing around some with the bat
 I was surprised I was able to get such quick results, but I went with it and dropped down to 30 epochs. That consistently got me the best test scores, around 77%. In general that isn't a great score for a neural network with supervised training... but by my understanding, this data was too limited anyway. So with that, I decided to wrap up the project and submit what you see in my repo.
 
 ```
-# Here's a snippet of the console output during from the final epoch:
+# Here's a snippet of the console output from the final training epoch:
 
 Epoch 30/30
 
