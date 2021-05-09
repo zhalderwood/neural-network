@@ -41,7 +41,7 @@ I tried using more neurons in the hidden layers at first - I started with 64 and
 
 - Output layer uses softmax activation
 
-As described in the assignment prompt. Though one bit that confused me was the assigments's requirement that the output layer only have 1 neuron. In order to use softmax, the training and target must have the same shape, and thus it needed to have 2 outputs. Otherwise the program would throw an exception when trying to perform the loss function.
+As described in the assignment prompt. Though one bit that confused me was the assigments's requirement that the output layer only have 1 neuron. When using softmax with a single neuron, my testing accuracy was stuck around 25%. So I came to the conclusion that, order to use softmax, the output layer needed 2 neurons and the target set needed 2 columns. Otherwise the program would throw an exception or would simply fail to achieve a usable degree accuracy.
 
 Once I was satisfied with the layers, I started playing around some with the batch sizes and number of epochs. I tried anywhere from 30-400 epochs, and batch sizes of 32-512. I had the best results with larger batches, so I stayed around 128-256 and played around more with the number of epochs. Upon inspecting the validation accuracy, I noticed that it was peaking around 30 epochs. Apparently I was way overtraining my network. 
 
