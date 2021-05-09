@@ -8,7 +8,8 @@ def prep_v2(frame):
     frame[trh] = frame[trh] / frame[trh].max()
     # one-hot encode categorical data
     frame = pd.get_dummies(frame)
-    # turn dataframe into tensor dataset with target layer
+    # split dataframe up into training and testing sets
+    # then pop target sets for both
     print(tf.shape(frame))
     train_size = int(0.7 * len(frame))
     train_x = frame.iloc[:train_size, :]
@@ -20,11 +21,14 @@ def prep_v2(frame):
 
 
 def get_compiled_model():
+    # define neural-network core logic
+    # sequential, feed-forward network with 2 hidden layers and 1 output layer
     mod = tf.keras.Sequential([
         tf.keras.layers.Dense(20, activation='relu', kernel_initializer='he_normal'),
         tf.keras.layers.Dense(10, activation='relu', kernel_initializer='he_normal'),
         tf.keras.layers.Dense(2, activation='softmax')
     ])
+    # compile with loss function that is most applicable given the data sets and output layer
     mod.compile(optimizer='adam',
                 loss=tf.keras.losses.BinaryCrossentropy(from_logits=False),
                 metrics=['accuracy'])
