@@ -21,14 +21,15 @@ Then I started looking closer at the output as my program executed each epoch. I
 
 Long story short, I spent about 2 hours or so researching and troubleshooting, but I finally got it to detect my GPU correctly. Woohoo! Now back to the task at hand... the neural network.
 
-Initially, I re-categorized all non-numerical values into ints. But I realized later that could cause some issues in how the network would interpret the data, so I decided to get my hands dirty. I re-wrote the data cleaning function and decided to:
+Initially, I re-categorized all non-numerical values into ints. But I realized later that could cause some issues in how the network would interpret the data, so I decided to get my hands dirty. I re-wrote the data cleaning function (actually several times) and this was what I used at the end of it:
 
-1. Drop rows that were missing 'experience' and 'last_new_job' (there were about 400 of these)
-2. Replace open-ended values in the aforementioned columns with int values
-3. Replace 'relevant_experience' column values with 1s or 0s.
-4. One-hot encode the rest.
+1. Rescale the training hours to put all values between 0-1
+2. One-hot encode all remaining columns that were non-numeric
+3. Split up dataframe into training and testing
+4. Further separate targets from the two new subsets
+5. One-hot encode the target sets
 
-At this point had a network set up with 2 hidden layers using relu activation and 1 linear output layer, all based on a simple tutorial on tf's website. The guide I used to do this didn't divide up any of the data for training, testing, or validation, and didn't really explain much of anything. As such I had to find my own path for dividing up the data and writing code to make tf do my bidding.
+At this point had a network set up with 2 hidden layers using relu activation and 1 linear output layer, all based on a simple tutorial on tf's website. The guide I used to do this didn't divide up any of the data for training, testing, or validation, and didn't really explain much of anything. As such I had to find my own path to make tf do my bidding.
 
 After many hours of research, coding, and trial & error, I was getting to a point where I understood most of the functions provided by tf. I was starting to feel confident in my ability to make TensorFlow do my bidding. The more I came to understand the different puzzle pieces, the more I changed my code. In total, I probably wrote about 600 lines and kept about 40. The final result that I settled on left me reasonably satisfied with my neural network. Here are the juicy details: 
 
