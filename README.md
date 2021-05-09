@@ -28,9 +28,9 @@ Initially, I re-categorized all non-numerical values into ints. But I realized l
 3. Replace 'relevant_experience' column values with 1s or 0s.
 4. One-hot encode the rest.
 
-At this point had a network set up with 2 hidden layers using relu activation and 1 linear output layer, all using keras.layers.Dense(). The guide I used to do this didn't divide up any of the data for training, testing, or validation. As such I had to find my own path for dividing up the data and writing code to make tf do my bidding. The initial guide was helpful in getting a general feel for creating a basic neural network, but it left a lot to be desired. I wanted to understand what inputs to use where, how to organize the data in a useful way, etc. I spent the better part of 2 days trying to put together the context for it all, but I wound up making the most progress after getting some sleep and taking another stab at it later.
+At this point had a network set up with 2 hidden layers using relu activation and 1 linear output layer, all based on a simple tutorial on tf's website. The guide I used to do this didn't divide up any of the data for training, testing, or validation, and didn't really explain much of anything. As such I had to find my own path for dividing up the data and writing code to make tf do my bidding.
 
-At this point I was starting to feel confident in my ability to make TensorFlow do my bidding. The more I came to understand the different puzzle pieces, the more I changed my code. In total, I probably wrote about 600 lines and kept about 50. The final result that I settled on left me reasonably satisfied with my neural network. Here are the juicy details: 
+After many hours of research, coding, and trial & error, I was getting to a point where I understood most of the functions provided by tf. I was starting to feel confident in my ability to make TensorFlow do my bidding. The more I came to understand the different puzzle pieces, the more I changed my code. In total, I probably wrote about 600 lines and kept about 40. The final result that I settled on left me reasonably satisfied with my neural network. Here are the juicy details: 
 
 - 2 hidden layers, as recommended in project prompt. Hidden layers of 20, 10 neurons respectively.
 - ReLu activation in both hidden layers - widely recommended for categorization problems
@@ -48,8 +48,7 @@ I was surprised I was able to get such quick results, but I went with it and dro
 
 Here's a snippet of the console output:
 
-'''
-Epoch 30/30
+'Epoch 30/30
 44/44 [==============================] - 0s 3ms/step - loss: 0.4439 - accuracy: 0.7874 - val_loss: 0.4847 - val_accuracy: 0.7548
 180/180 [==============================] - 0s 1ms/step - loss: 0.4705 - accuracy: 0.7738
 Model: "sequential"
@@ -65,7 +64,6 @@ dense_2 (Dense)              (None, 2)                 22
 Total params: 1,512
 Trainable params: 1,512
 Non-trainable params: 0
-_________________________________________________________________
-'''
+_________________________________________________________________'
 
 Thanks for reading!
