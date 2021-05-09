@@ -10,8 +10,8 @@ A project for Intro to Artificial Intelligence at UMKC in Spring 2021
 - [pandas type conversions](https://www.geeksforgeeks.org/change-data-type-for-one-or-more-columns-in-pandas-dataframe/)
 - [pandas API guide](https://pandas.pydata.org/docs/reference/frame.html)
 - [Dividing up datasets](https://www.geeksforgeeks.org/split-pandas-dataframe-by-rows/)
-- [AI & keras explained](https://machinelearningmastery.com/tensorflow-tutorial-deep-learning-with-tf-keras/)
-- [Activation and initialization functions](https://towardsdatascience.com/weight-initialization-techniques-in-neural-networks-26c649eb3b78)
+- [keras and selecting activation and loss functions](https://machinelearningmastery.com/tensorflow-tutorial-deep-learning-with-tf-keras/)
+- [weights and initialization functions](https://towardsdatascience.com/weight-initialization-techniques-in-neural-networks-26c649eb3b78)
 
 # write-up
 
