@@ -11,7 +11,7 @@ def prep_v2(frame):
     # split dataframe up into training and testing sets
     # then pop target sets for both
     print(tf.shape(frame))
-    train_size = int(0.7 * len(frame))
+    train_size = int(0.85 * len(frame))
     train_x = frame.iloc[:train_size, :]
     train_y = pd.get_dummies(train_x.pop('target'))
     test_x = frame.iloc[train_size+1:, :]
